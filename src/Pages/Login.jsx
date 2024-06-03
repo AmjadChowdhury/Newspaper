@@ -1,20 +1,37 @@
 import { Link } from "react-router-dom";
 import Navbar from "../shared/Navbar";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
-  const handleLogin = e => {
-    e.preventDefault()
+  const { signIn } = useContext(AuthContext);
+  const [success, setSuccess] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-    const email = e.target.email.value
-    const password = e.target.password.value
-    console.log(email,password)
-  }  
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
 
-
+    //Reset..
+    setSuccess('')
+    setLoginError('')
+  
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        setSuccess(`${result.user.displayName} login successfully`);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setLoginError(error.message);
+      });
+  };
 
   return (
     <div>
-      <Navbar></Navbar>  
+      <Navbar></Navbar>
       <div className="flex justify-center mt-5 lg:mt-10">
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <h1 className="text-2xl font-bold text-center my-5">
@@ -59,7 +76,7 @@ const Login = () => {
               </button>
             </div>
             <p>
-              You have no account ? Please{" "}
+              You have no account ? Please
               <Link to="/register" className="font-semibold text-cyan-950">
                 Register
               </Link>
@@ -67,6 +84,14 @@ const Login = () => {
           </form>
         </div>
       </div>
+      { 
+        success && 
+        <h1 className="text-2xl font-extrabold text-green-600 text-center my-5">{success}</h1>
+      }
+      {
+        loginError && 
+        <h1 className="text-2xl font-extrabold text-red-600 text-center my-5">{loginError}</h1>
+      }
     </div>
   );
 };

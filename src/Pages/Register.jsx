@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import Navbar from "../shared/Navbar";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import auth from "../Firebase/firebase.config";
 
 const Register = () => {
+  const {createUser} = useContext(AuthContext)
+  const [success,setSuccess] = useState('')
+  const [registerError,setRegisterError] = useState('')  
+
+
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -9,7 +18,30 @@ const Register = () => {
     const email = e.target.email.value
     const password = e.target.password.value
 
+    //Reset...
+    setSuccess('')
+    setRegisterError('')
+
     console.log(name,email,password)
+    createUser(email,password)
+    .then(result => {
+        console.log(result.user)
+        updateProfile(auth.currentUser, {
+            displayName: name
+          }).then(() => {
+            alert('Progile updated')
+            console.log(auth.currentUser)
+            setSuccess(`${auth.currentUser.displayName} Register account successfully`);
+          }).catch((error) => {
+            console.log(error.message)
+            setRegisterError(error.message)
+          });
+    })
+    .catch(error => {
+        console.log(error.message)
+        setRegisterError(error.message)
+    })
+
   };
 
   return (
@@ -71,6 +103,15 @@ const Register = () => {
           </form>
         </div>
       </div>
+      {
+        success && 
+        <h1 className="text-2xl font-extrabold text-green-600 text-center my-5">{success}</h1>
+      }
+      {
+        registerError && 
+        <h1 className="text-2xl font-extrabold text-red-600 text-center my-5">{registerError}</h1>
+      }
+      
     </div>
   );
 };
