@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../shared/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -7,6 +7,9 @@ const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [success, setSuccess] = useState("");
   const [loginError, setLoginError] = useState("");
+  const location = useLocation()
+  const navigate = useNavigate()
+  console.log('In login page ',location)
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -22,12 +25,14 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         setSuccess(`${result.user.displayName} login successfully`);
+        navigate(location?.state ? location.state : "/")
       })
       .catch((error) => {
         console.log(error.message);
         setLoginError(error.message);
       });
   };
+  
 
   return (
     <div>
