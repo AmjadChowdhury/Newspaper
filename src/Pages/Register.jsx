@@ -28,11 +28,13 @@ const Register = () => {
         console.log(result.user)
         updateProfile(auth.currentUser, {
             displayName: name
-          }).then(() => {
+          })
+          .then(() => {
             alert('Progile updated')
             console.log(auth.currentUser)
             setSuccess(`${auth.currentUser.displayName} Register account successfully`);
-          }).catch((error) => {
+          })
+          .catch((error) => {
             console.log(error.message)
             setRegisterError(error.message)
           });
@@ -48,7 +50,7 @@ const Register = () => {
     <div>
       <Navbar></Navbar>  
       <div className="flex justify-center mt-5 lg:mt-10">
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card shrink-0 w-full max-w-sm bg-base-100 border-4 border-black">
           <h1 className="text-2xl font-bold text-center my-5">
             Register your account
           </h1>

@@ -16,6 +16,8 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(email, password);
+    //clear email & password field..
+    e.target.reset()
 
     //Reset..
     setSuccess('')
@@ -38,7 +40,7 @@ const Login = () => {
     <div>
       <Navbar></Navbar>
       <div className="flex justify-center mt-5 lg:mt-10">
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card shrink-0 w-full max-w-sm bg-base-100 border-4 border-black">
           <h1 className="text-2xl font-bold text-center my-5">
             Login your account
           </h1>

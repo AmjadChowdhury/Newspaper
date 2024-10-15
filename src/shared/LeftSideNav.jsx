@@ -15,7 +15,10 @@ const LeftSideNav = () => {
             <h1 className="text-2xl font-bold ml-2 mb-5">All Categories</h1>
             <div className="space-y-3">
             {
-                categories.map(category => <Link key={category.id} className="block ml-4 text-lg font-semibold hover:font-bold">{category.name}</Link>)
+                categories.map(category => <Link 
+                    to={`/category/${category.id}`}
+                    key={category.id} 
+                    className="block ml-4 text-lg font-semibold hover:font-bold">{category.name}</Link>)
             }
             </div>
         </div>
