@@ -23,8 +23,8 @@ const NewsDetails = () => {
                 alt="Shoes"
               />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title">{title}</h2>
+            <div className="card-body border-b-4 border-b-black rounded-lg">
+              <h2 className="card-title font-bold">{title}</h2>
               <p>{details}</p>
             </div>
           </div>

@@ -7,17 +7,39 @@ import { FaInstagram } from "react-icons/fa";
 import qzone1 from '../../src/assets/qZone1.png'
 import qzone2 from '../../src/assets/qZone2.png'
 import qzone3 from '../../src/assets/qZone3.png'
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const RightSideNav = () => {
+  const { signInWihGoogle,signInWihGithub } = useContext(AuthContext)
+  const handleGoogleSignIn = () => {
+    signInWihGoogle()
+    .then(result => {
+      console.log(result.user)
+    })
+    .catch(error => {
+      console.log(error.message)
+    })
+  }
+
+  const handleGithubSignIn = () => {
+    signInWihGithub()
+    .then(result => {
+      console.log(result.user)
+    })
+    .catch(error => {
+      console.log(error.message)
+    })
+  }
   return (
     <div>
       <div className="px-2 mb-4">
         <h2 className="text-3xl font-bold mb-4">Login with</h2>
-        <button className="btn btn-outline w-full mb-2 text-lg">
+        <button onClick={handleGoogleSignIn} className="btn btn-outline w-full mb-2 text-lg">
           <FcGoogle></FcGoogle>
           Google
         </button>
-        <button className="btn btn-outline w-full text-lg">
+        <button onClick={handleGithubSignIn} className="btn btn-outline w-full text-lg">
           <FaGithub></FaGithub>
           Github
         </button>

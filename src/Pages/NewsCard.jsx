@@ -6,7 +6,7 @@ import { FaEye } from "react-icons/fa";
 const NewsCard = ({ news }) => {
   const { _id,title,details,image_url,total_view,rating } = news;
   return (
-    <div className="card bg-base-100 shadow-xl mb-10">
+    <div className="card bg-base-100 shadow-xl mb-10 border-b-4 border-b-black">
       <figure>
         <img
           src={image_url}
@@ -21,7 +21,7 @@ const NewsCard = ({ news }) => {
             <p>{details}</p>
         }
         {
-          <div className="flex justify-between p-4">
+          <div className="p-4 flex justify-between ">
             <p className="flex items-center gap-2 text-xl font-bold"><FcRating></FcRating>{rating.number}</p>
             <p className="flex items-center justify-end gap-2 text-xl font-bold"><FaEye></FaEye>{total_view}</p>
           </div>
