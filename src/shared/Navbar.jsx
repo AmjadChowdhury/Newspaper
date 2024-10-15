@@ -17,17 +17,12 @@ const Navbar = () => {
   };
 
   const links = (
-    <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/about">About</NavLink>
-      </li>
-      <li>
-        <NavLink to="/career">Career</NavLink>
-      </li>
-    </>
+    <div className="lg:flex lg:gap-2">
+        <NavLink to="/"><li className="btn bg-[#0000ff12]  w-full mb-1">Home</li></NavLink>
+        <NavLink to="/about"><li className="btn bg-[#0000ff12]  w-full mb-1">About</li></NavLink>
+        <NavLink to="/career"><li className="btn bg-[#0000ff12] w-full">Career</li></NavLink>
+      
+    </div>
   );
   return (
     <div>
