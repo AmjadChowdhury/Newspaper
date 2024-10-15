@@ -9,9 +9,10 @@ const BreakingNews = () => {
             <Marquee pauseOnHover={true} speed={100}>
                 <Link className="mr-12">Rahat dhakat</Link>
                 <Link className="mr-12">Linkon chor</Link>
-                <Link className="mr-12">Juthy Khuni</Link>
-                <Link className="mr-12">Sabuj victim</Link>
-                <Link className="mr-12">Amjad Boss</Link>
+                <Link className="mr-12">Juthy valo meye</Link>
+                <Link className="mr-12">Sabuj valo chele</Link>
+                <Link className="mr-12">Pavel haramjada</Link>
+                <Link className="mr-12">Amjad low cg</Link>
             </Marquee>
         </div>
     );
